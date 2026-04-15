@@ -1,36 +1,22 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+🚀 keenKeeper
+keenKeeper is a sleek, modern, and user-centric Friendship Interaction Tracker application. This project is meticulously designed to help users log, manage, and visualize their interactions with friends, making it effortless to stay connected and maintain healthy social dynamics.
 
-## Getting Started
 
-First, run the development server:
+📝 Project Description
+keenKeeper serves as a digital companion for tracking personal interactions such as calls, text messages, and video chats. Built with a focus on simplicity and efficiency, the app provides a real-time timeline of your interactions, backed by visual analytics to help you identify communication patterns. Whether you are tracking consistency or just organizing your social life, keenKeeper offers a clean, responsive, and intuitive interface.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🛠 Technologies Used
+The following cutting-edge technologies were utilized to build this application:
+Framework: Next.js (React)
+Styling: Tailwind CSS
+UI Components: DaisyUI
+Data Visualization: Recharts (for interactive analytics)
+Icons & Feedback: Lucide React, React Hot Toast
+State Management: Browser sessionStorage (for lightweight, session-based persistence)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+✨ Key Features
+Seamless Interaction Logging: Effortlessly log your communication events (Call, Text, Video) with a single click, instantly updating your activity timeline.
+Visual Interaction Analytics: Gain insights into your communication habits with a dynamic, responsive Pie Chart powered by Recharts, showing the distribution of your interaction types.
+Smart Timeline Filtering: Quickly sort and navigate your interaction history with an intuitive filtering system, allowing you to focus on specific communication methods like calls or messages.
