@@ -4,21 +4,22 @@ import React, { useState, useEffect } from 'react';
 
 const Timeline = () => {
     const [timelineData, setTimelineData] = useState([]);
+    const [filter, setFilter] = useState('All');
 
     useEffect(() => {
+        const data = JSON.parse(sessionStorage.getItem('myTimeline') || '[]');
+        setTimelineData(data);
 
         const handleBeforeUnload = () => {
             sessionStorage.removeItem('myTimeline');
         };
-
         window.addEventListener('beforeunload', handleBeforeUnload);
-        const data = JSON.parse(sessionStorage.getItem('myTimeline') || '[]');
-        setTimelineData(data);
-
-        return () => {
-            window.removeEventListener('beforeunload', handleBeforeUnload);
-        };
+        return () => window.removeEventListener('beforeunload', handleBeforeUnload);
     }, []);
+
+    const filteredData = filter === 'All' 
+        ? timelineData 
+        : timelineData.filter(item => item.type === filter);
 
     const getIcon = (type) => {
         switch (type) {
@@ -35,19 +36,22 @@ const Timeline = () => {
                 <h1 className="text-3xl font-bold mb-6 text-[#244d3f]">Timeline</h1>
 
                 <div className="mb-6">
-                    <select className="border border-gray-200 rounded-lg p-2 text-sm text-gray-600 bg-white shadow-sm outline-none cursor-pointer hover:border-[#244d3f]">
-                        <option>Filter timeline</option>
-                        <option>Calls</option>
-                        <option>Texts</option>
-                        <option>Videos</option>
+                    <select 
+                        className="border border-gray-200 rounded-lg p-2 text-sm text-gray-600 bg-white shadow-sm outline-none cursor-pointer hover:border-[#244d3f]"
+                        onChange={(e) => setFilter(e.target.value)} // সিলেক্ট পরিবর্তন হলে স্টেট আপডেট হবে
+                    >
+                        <option value="All">Filter timeline</option>
+                        <option value="Call">Calls</option>
+                        <option value="Text">Texts</option>
+                        <option value="Video">Videos</option>
                     </select>
                 </div>
 
                 <div className="space-y-4">
-                    {timelineData.length > 0 ? (
-                        timelineData.map((entry) => (
-                            <div
-                                key={entry.id}
+                    {filteredData.length > 0 ? (
+                        filteredData.map((entry) => (
+                            <div 
+                                key={entry.id} 
                                 className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between hover:shadow-md transition-all duration-200"
                             >
                                 <div className="flex items-center gap-4">
@@ -65,8 +69,7 @@ const Timeline = () => {
                         ))
                     ) : (
                         <div className="text-center py-20 bg-white rounded-2xl border border-gray-100 shadow-sm">
-                            <p className="text-gray-500">No interaction history found yet.</p>
-                            <p className="text-sm text-gray-400 mt-2">Go to a friend's page and make a check-in</p>
+                            <p className="text-gray-500">No {filter !== 'All' ? filter : ''} history found.</p>
                         </div>
                     )}
                 </div>

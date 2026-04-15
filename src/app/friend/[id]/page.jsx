@@ -103,15 +103,28 @@ const FriendDetails = () => {
                     <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex-grow">
                         <h3 className="font-bold mb-4" style={{ color: brandGreen }}>Quick Check-In</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                            <button onClick={() => handleCheckIn('Call')} className="flex flex-row sm:flex-col items-center justify-center py-4 sm:py-6 border rounded-xl hover:bg-gray-50 transition gap-4 sm:gap-2">
+            
+                            <button
+                                onClick={() => handleCheckIn('Call')}
+                                className="flex flex-row sm:flex-col items-center justify-center py-4 sm:py-6 border-2 border-gray-100 rounded-xl hover:border-[#244d3f] hover:bg-gray-50 transition-all duration-200 cursor-pointer active:scale-95 gap-4 sm:gap-2"
+                            >
                                 <Image src="/assets/call.png" alt="Call" width={30} height={30} />
                                 <span className="text-xs font-semibold" style={{ color: brandGreen }}>Call</span>
                             </button>
-                            <button onClick={() => handleCheckIn('Text')} className="flex flex-col items-center justify-center py-4 sm:py-6 border rounded-xl hover:bg-gray-50 transition gap-4 sm:gap-2">
+
+                            
+                            <button
+                                onClick={() => handleCheckIn('Text')}
+                                className="flex flex-row sm:flex-col items-center justify-center py-4 sm:py-6 border-2 border-gray-100 rounded-xl hover:border-[#244d3f] hover:bg-gray-50 transition-all duration-200 cursor-pointer active:scale-95 gap-4 sm:gap-2"
+                            >
                                 <Image src="/assets/text.png" alt="Text" width={30} height={30} />
                                 <span className="text-xs font-semibold" style={{ color: brandGreen }}>Text</span>
                             </button>
-                            <button onClick={() => handleCheckIn('Video')} className="flex flex-col items-center justify-center py-4 sm:py-6 border rounded-xl hover:bg-gray-50 transition gap-4 sm:gap-2">
+
+                            <button
+                                onClick={() => handleCheckIn('Video')}
+                                className="flex flex-row sm:flex-col items-center justify-center py-4 sm:py-6 border-2 border-gray-100 rounded-xl hover:border-[#244d3f] hover:bg-gray-50 transition-all duration-200 cursor-pointer active:scale-95 gap-4 sm:gap-2"
+                            >
                                 <Image src="/assets/video.png" alt="Video" width={30} height={30} />
                                 <span className="text-xs font-semibold" style={{ color: brandGreen }}>Video</span>
                             </button>
