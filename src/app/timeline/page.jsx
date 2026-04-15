@@ -17,8 +17,8 @@ const Timeline = () => {
         return () => window.removeEventListener('beforeunload', handleBeforeUnload);
     }, []);
 
-    const filteredData = filter === 'All' 
-        ? timelineData 
+    const filteredData = filter === 'All'
+        ? timelineData
         : timelineData.filter(item => item.type === filter);
 
     const getIcon = (type) => {
@@ -36,7 +36,7 @@ const Timeline = () => {
                 <h1 className="text-3xl font-bold mb-6 text-[#244d3f]">Timeline</h1>
 
                 <div className="mb-6">
-                    <select 
+                    <select
                         className="border border-gray-200 rounded-lg p-2 text-sm text-gray-600 bg-white shadow-sm outline-none cursor-pointer hover:border-[#244d3f]"
                         onChange={(e) => setFilter(e.target.value)} // সিলেক্ট পরিবর্তন হলে স্টেট আপডেট হবে
                     >
@@ -50,8 +50,8 @@ const Timeline = () => {
                 <div className="space-y-4">
                     {filteredData.length > 0 ? (
                         filteredData.map((entry) => (
-                            <div 
-                                key={entry.id} 
+                            <div
+                                key={entry.id}
                                 className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between hover:shadow-md transition-all duration-200"
                             >
                                 <div className="flex items-center gap-4">
