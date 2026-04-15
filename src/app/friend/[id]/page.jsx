@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
+import { toast } from 'react-hot-toast';
 
 const FriendDetails = () => {
     const { id } = useParams();
@@ -19,12 +20,41 @@ const FriendDetails = () => {
             });
     }, [id]);
 
+    const handleCheckIn = (type) => {
+        const newEntry = {
+            id: Date.now(),
+            type: type,
+            name: friend.name,
+            date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+        };
+
+        const existingEntries = JSON.parse(sessionStorage.getItem('myTimeline') || '[]');
+        sessionStorage.setItem('myTimeline', JSON.stringify([newEntry, ...existingEntries]));
+
+        const toastConfig = {
+            Call: { bg: '#244d3f', icon: '📞' },
+            Text: { bg: '#1e40af', icon: '💬' },
+            Video: { bg: '#991b1b', icon: '📹' }
+        };
+
+        const config = toastConfig[type] || { bg: brandGreen, icon: '✅' };
+
+        toast.success(`${type} with ${friend.name} added!`, {
+            style: {
+                background: config.bg,
+                color: '#fff',
+                borderRadius: '10px'
+            },
+            icon: config.icon,
+        });
+    };
+
     if (!friend) return <div className="p-10 text-center">Loading...</div>;
 
     return (
         <div className="min-h-screen bg-gray-50 p-8">
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-
+                {/* Left Column */}
                 <div className="lg:col-span-4 flex flex-col gap-6">
                     <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm text-center flex-grow">
                         <div className="relative w-[100px] h-[100px] mx-auto mb-4">
@@ -72,18 +102,18 @@ const FriendDetails = () => {
 
                     <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex-grow">
                         <h3 className="font-bold mb-4" style={{ color: brandGreen }}>Quick Check-In</h3>
-                        <div className="grid grid-cols-3 gap-4">
-                            <button className="flex flex-col items-center py-6 border rounded-xl hover:bg-gray-50 transition">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <button onClick={() => handleCheckIn('Call')} className="flex flex-row sm:flex-col items-center justify-center py-4 sm:py-6 border rounded-xl hover:bg-gray-50 transition gap-4 sm:gap-2">
                                 <Image src="/assets/call.png" alt="Call" width={30} height={30} />
-                                <span className="text-xs mt-2 font-semibold" style={{ color: brandGreen }}>Call</span>
+                                <span className="text-xs font-semibold" style={{ color: brandGreen }}>Call</span>
                             </button>
-                            <button className="flex flex-col items-center py-6 border rounded-xl hover:bg-gray-50 transition">
+                            <button onClick={() => handleCheckIn('Text')} className="flex flex-col items-center justify-center py-4 sm:py-6 border rounded-xl hover:bg-gray-50 transition gap-4 sm:gap-2">
                                 <Image src="/assets/text.png" alt="Text" width={30} height={30} />
-                                <span className="text-xs mt-2 font-semibold" style={{ color: brandGreen }}>Text</span>
+                                <span className="text-xs font-semibold" style={{ color: brandGreen }}>Text</span>
                             </button>
-                            <button className="flex flex-col items-center py-6 border rounded-xl hover:bg-gray-50 transition">
+                            <button onClick={() => handleCheckIn('Video')} className="flex flex-col items-center justify-center py-4 sm:py-6 border rounded-xl hover:bg-gray-50 transition gap-4 sm:gap-2">
                                 <Image src="/assets/video.png" alt="Video" width={30} height={30} />
-                                <span className="text-xs mt-2 font-semibold" style={{ color: brandGreen }}>Video</span>
+                                <span className="text-xs font-semibold" style={{ color: brandGreen }}>Video</span>
                             </button>
                         </div>
                     </div>
