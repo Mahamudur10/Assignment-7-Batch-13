@@ -1,21 +1,35 @@
-import React from 'react';
-import Link from 'next/link';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import { FaPlus } from 'react-icons/fa';
 
 const Banner = () => {
+    const [friends, setFriends] = useState([]);
     const primaryGreen = "#2b4a43";
 
+    useEffect(() => {
+        fetch('/friends.json')
+            .then((res) => res.json())
+            .then((data) => setFriends(data))
+            .catch((err) => console.error("Error loading friends:", err));
+    }, []);
+
+    const totalFriends = friends.length;
+    const onTrack = friends.filter(f => f.status === 'on-track').length;
+    const needAttention = friends.filter(f => f.status === 'overdue' || f.status === 'almost due').length;
+
+    const interactions = friends.filter(f => f.days_since_contact <= 30).length;
+
     const summaryCards = [
-        { label: 'Total Friends', count: '10' },
-        { label: 'On Track', count: '3' },
-        { label: 'Need Attention', count: '6' },
-        { label: 'Interactions This Month', count: '12' },
+        { label: 'Total Friends', count: totalFriends },
+        { label: 'On Track', count: onTrack },
+        { label: 'Need Attention', count: needAttention },
+        { label: 'Interactions This Month', count: interactions },
     ];
 
     return (
         <section className="py-16 bg-gray-50">
             <div className="w-[95%] md:max-w-[65%] mx-auto text-center">
-
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                     Friends to keep close in your life
                 </h1>
