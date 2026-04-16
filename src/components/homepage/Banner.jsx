@@ -31,7 +31,7 @@ const Banner = () => {
         <section className="py-16 bg-gray-50">
             <div className="w-[95%] md:max-w-[65%] mx-auto text-center">
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                    Friends to keep close in your life   Chaecking deploy vercel
+                    Friends to keep close in your life
                 </h1>
                 <p className="text-gray-500 max-w-lg mx-auto mb-8">
                     Your personal shelf of meaningful connections. Browse, tend, and nurture the relationships that matter most.
